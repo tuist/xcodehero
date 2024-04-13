@@ -7,7 +7,7 @@ on:
   pull_request: {}
 
 concurrency:
-  group: decks-${{ github.head_ref }}
+  group: xcodehero-${{ github.head_ref }}
   cancel-in-progress: true
 
 env:
