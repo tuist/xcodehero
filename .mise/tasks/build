@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# mise description="Builds the project."
+
+tuist build --path $MISE_PROJECT_ROOT

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# mise description="Generates an Xcode project to edit the project"
+
+tuist edit --path $MISE_PROJECT_ROOT

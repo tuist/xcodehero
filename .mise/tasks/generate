@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# mise description="Generates the project using Tuist."
+
+tuist generate --path $MISE_PROJECT_ROOT

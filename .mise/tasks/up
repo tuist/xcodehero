@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# mise description="Runs necessary operations to prepare the project for development"
+
+tuist install --path $MISE_PROJECT_ROOT

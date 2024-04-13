@@ -1,0 +1,31 @@
+name: xcodehero
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: {}
+
+concurrency:
+  group: decks-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  MISE_EXPERIMENTAL: 1
+
+jobs:
+  build:
+    runs-on: macos-14
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Mise dependencies
+        uses: jdx/mise-action@v2
+
+      - name: Prepare the project for development
+        run: mise run up
+
+      - name: Build
+        run: mise run build
