@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# mise description="Builds and runs the CLI"
+
+echo "Building xcodehero"
+tuist build --path $MISE_PROJECT_ROOT > /dev/null
+
+BASE_DIR="$HOME/Library/Developer/Xcode/DerivedData"
+EXECUTABLE_NAME="xcodehero"
+
+EXECUTABLE=$(find "$BASE_DIR" -path "*/Xcodehero-*/Build/Products/Debug/$EXECUTABLE_NAME" -type f)
+$EXECUTABLE $@

@@ -1,31 +1,16 @@
 import ProjectDescription
 
 let project = Project(
-    name: "Xcodehero",
+    name: "xcodehero",
     targets: [
         .target(
-            name: "Xcodehero",
-            destinations: .iOS,
-            product: .app,
-            bundleId: "io.tuist.Xcodehero",
-            infoPlist: .extendingDefault(
-                with: [
-                    "UILaunchStoryboardName": "LaunchScreen.storyboard",
-                ]
-            ),
-            sources: ["Xcodehero/Sources/**"],
-            resources: ["Xcodehero/Resources/**"],
+            name: "xcodehero",
+            destinations: .macOS,
+            product: .commandLineTool,
+            bundleId: "io.tuist.xcodehero",
+            deploymentTargets: .macOS("14.0.0"),
+            sources: ["xcodehero/Sources/**"],
             dependencies: []
-        ),
-        .target(
-            name: "XcodeheroTests",
-            destinations: .iOS,
-            product: .unitTests,
-            bundleId: "io.tuist.XcodeheroTests",
-            infoPlist: .default,
-            sources: ["Xcodehero/Tests/**"],
-            resources: [],
-            dependencies: [.target(name: "Xcodehero")]
-        ),
+        )
     ]
 )
