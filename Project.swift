@@ -10,7 +10,13 @@ let project = Project(
             bundleId: "io.tuist.xcodehero",
             deploymentTargets: .macOS("14.0.0"),
             sources: ["xcodehero/Sources/**"],
-            dependencies: []
+            dependencies: [
+                .external(name: "ArgumentParser"),
+                .external(name: "Path"),
+                .external(name: "INIParser"),
+                .external(name: "SwiftTerminal"),
+                .external(name: "XcodeProj")
+            ]
         )
     ]
 )

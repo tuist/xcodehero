@@ -15,8 +15,10 @@ import PackageDescription
 let package = Package(
     name: "Xcodehero",
     dependencies: [
-        // Add your own dependencies here:
-        // .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0"),
-        // You can read more about dependencies here: https://docs.tuist.io/documentation/tuist/dependencies
+        .package(url: "https://github.com/apple/swift-argument-parser", .upToNextMajor(from: "1.3.1")),
+        .package(url: "https://github.com/tuist/Path", .upToNextMajor(from: "0.1.0")),
+        .package(url: "https://github.com/PerfectlySoft/Perfect-INIParser.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/tuist/SwiftTerminal", .revisionItem("1dca7323df4aaba743a4383e8dec76112feabd16")),
+        .package(url: "https://github.com/tuist/XcodeProj", .upToNextMajor(from: "8.20.0"))
     ]
 )
