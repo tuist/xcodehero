@@ -15,7 +15,9 @@ let project = Project(
                 .external(name: "Path"),
                 .external(name: "INIParser"),
                 .external(name: "SwiftTerminal"),
-                .external(name: "XcodeProj")
+                .external(name: "XcodeProj"),
+                .external(name: "Command"),
+                .external(name: "XcbeautifyLib")
             ]
         )
     ]

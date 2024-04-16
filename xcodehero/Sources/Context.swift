@@ -36,7 +36,7 @@ actor XcodeHeroContext: Context {
     
     init() {
         self.isInteractive = !(ProcessInfo.processInfo.environment["NO_TTY"] != nil) || isatty(STDIN_FILENO) != 0
-        self.shouldColor = ProcessInfo.processInfo.environment["NO_COLOR"] != nil
+        self.shouldColor = !(ProcessInfo.processInfo.environment["NO_COLOR"] != nil)
         self.envVariables = ProcessInfo.processInfo.environment
         self.currentWorkingDirectory = try! AbsolutePath(validating: FileManager.default.currentDirectoryPath)
         self.homeDirectory = try! AbsolutePath(validating: FileManager.default.homeDirectoryForCurrentUser.path())

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# mise description="Builds the project."
+
+xcodebuild build -workspace $MISE_PROJECT_ROOT/Xcodehero.xcworkspace -scheme xcodehero ONLY_ACTIVE_ARCH=NO ARCHS="arm64 x86_64" -configuration Release
+
+BASE_DIR="$HOME/Library/Developer/Xcode/DerivedData"
+EXECUTABLE_NAME="xcodehero"
+EXECUTABLE=$(find "$BASE_DIR" -path "*/Xcodehero-*/Build/Products/Release/$EXECUTABLE_NAME" -type f)
+
+mkdir -p $MISE_PROJECT_ROOT/.build
+mv -f $EXECUTABLE $MISE_PROJECT_ROOT/.build/$EXECUTABLE_NAME
+
+(
+    cd $MISE_PROJECT_ROOT/.build
+    zip -q -r --symlinks xcodehero.zip xcodehero
+
+    rm -rf xcodehero
+    
+    : > SHASUMS256.txt
+    : > SHASUMS512.txt
+
+    for file in *; do
+        if [ -f "$file" ]; then
+            if [[ "$file" == "SHASUMS256.txt" || "$file" == "SHASUMS512.txt" ]]; then
+                continue
+            fi
+            echo "$(shasum -a 256 "$file" | awk '{print $1}') ./$file" >> SHASUMS256.txt
+            echo "$(shasum -a 512 "$file" | awk '{print $1}') ./$file" >> SHASUMS512.txt
+        fi
+    done
+)
+    

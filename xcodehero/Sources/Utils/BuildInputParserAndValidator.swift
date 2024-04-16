@@ -14,6 +14,13 @@ enum BuildInputParserError: FatalError {
     case nonSupportedProject(AbsolutePath)
     case projectNotFoundInWorkingDirectory(AbsolutePath)
     
+    var context: String {
+        switch self {
+        case .projectNotFound, .nonSupportedProject, .projectNotFoundInWorkingDirectory:
+            return "We were trying to locate and validate the project at the given path before building it"
+        }
+    }
+    
     var description: String {
         switch self {
         case let .projectNotFound(path):

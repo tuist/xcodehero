@@ -1,11 +1,25 @@
 import ArgumentParser
 import Foundation
 import Path
+import Command
+import XcbeautifyLib
+import SwiftTerminal
+
+enum MyError: FatalError {
+    var context: String { "We were trying something" }
+    
+    var nextSteps: [String] { ["foo", "bar"] }
+    
+    var description: String { "Error" }
+    
+    case test
+    
+}
 
 struct BuildCommand: AsyncParsableCommand {
     public static var configuration: CommandConfiguration = .init(
         commandName: "build",
-        abstract: "Builds an Xcode worksapce or project"
+        abstract: "Builds an Xcode workspace or project"
     )
     
     @Argument(
@@ -15,6 +29,16 @@ struct BuildCommand: AsyncParsableCommand {
     )
     var path: AbsolutePath?
     
+    @Flag(
+        help: "When passed, it cleans derived data before building."
+    )
+    var clean = false
+    
+    @Option(
+        help: "The name of the scheme to build."
+    )
+    var scheme: String
+    
     init() {}
     func run() async throws {
         try await self.run(context: XcodeHeroContext())
@@ -22,5 +46,51 @@ struct BuildCommand: AsyncParsableCommand {
     
     func run(context: Context) async throws {
         let params = try await BuildInputParserAndValidator(context: context).parseAndValidate(path: self.path)
+        let commandRunner = CommandRunner()
+        var arguments = ["/usr/bin/xcrun", "xcodebuild", "-scheme", scheme]
+        switch params.projectPath {
+        case .workspace(let absolutePath):
+            arguments.append(contentsOf: ["-workspace", absolutePath.pathString])
+        case .project(let absolutePath):
+            arguments.append(contentsOf: ["-project", absolutePath.pathString])
+        }
+        if clean {
+            arguments.append("clean")
+        }
+        arguments.append("build")
+
+        let formatter = await XCBeautifier(
+            colored: context.shouldColor,
+            renderer: .terminal,
+            preserveUnbeautifiedLines: false,
+            additionalLines: { nil }
+        )
+//        for try await event in commandRunner.run(arguments: arguments) {
+//            switch event {
+//            case .standardError(_):
+//                if let formattedLine = formatter.format(line: event.utf8String) {
+//                    try FileHandle.standardError.write(contentsOf: "\(formattedLine)\n".data(using: .utf8)!)
+//                }
+//            case .standardOutput(_):
+//                if let formattedLine = formatter.format(line: event.utf8String) {
+//                    try FileHandle.standardOutput.write(contentsOf: "\(formattedLine)\n".data(using: .utf8)!)
+//                }
+//            }
+//        }
+        
+        let stream = commandRunner.run(arguments: arguments).map({ event -> CollapsibleStream.Event in
+            switch event {
+            case .standardError(_):
+                return .error(event.utf8String.split(separator: "\n")
+                    .compactMap({ formatter.format(line: String($0 ))})
+                    .joined(separator: "\n"))
+            case .standardOutput(_):
+                return .output(event.utf8String.split(separator: "\n")
+                    .compactMap({ formatter.format(line: String($0 ))})
+                    .joined(separator: "\n"))
+            }
+        }).eraseToAsyncThrowingStream()
+        
+        try await CollapsibleStream.render(title: arguments.joined(separator: " "), stream: stream, theme: xcodeHeroTheme)
     }
 }

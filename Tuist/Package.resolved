@@ -10,6 +10,24 @@
       }
     },
     {
+      "identity" : "asynchrone",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/reddavis/Asynchrone",
+      "state" : {
+        "revision" : "1ddfcd3bc93277f68dffb793fc60001902f2517b",
+        "version" : "0.22.0"
+      }
+    },
+    {
+      "identity" : "colorizer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/getGuaka/Colorizer.git",
+      "state" : {
+        "revision" : "2ccc99bf1715e73c4139e8d40b6e6b30be975586",
+        "version" : "0.2.1"
+      }
+    },
+    {
       "identity" : "combinex",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/cx-org/CombineX",
@@ -19,12 +37,21 @@
       }
     },
     {
+      "identity" : "command",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tuist/Command",
+      "state" : {
+        "revision" : "7685bf67d8688e31fc1c93715a41a7558b1001b9",
+        "version" : "0.1.0"
+      }
+    },
+    {
       "identity" : "path",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/Path",
       "state" : {
-        "revision" : "d5f2d5764639291e24248d1d05b0577a38cfa13f",
-        "version" : "0.1.0"
+        "revision" : "61e3fa3b2fd56e0bd2496afd62a35c2cb98a6fca",
+        "version" : "0.2.0"
       }
     },
     {
@@ -82,11 +109,39 @@
       }
     },
     {
+      "identity" : "swift-system",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-system.git",
+      "state" : {
+        "revision" : "025bcb1165deab2e20d4eaba79967ce73013f496",
+        "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "swift-tools-support-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-tools-support-core",
+      "state" : {
+        "revision" : "3b13e439a341bbbfe0f710c7d1be37221745ef1a",
+        "version" : "0.6.1"
+      }
+    },
+    {
       "identity" : "swiftterminal",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/SwiftTerminal",
       "state" : {
-        "revision" : "1dca7323df4aaba743a4383e8dec76112feabd16"
+        "revision" : "eb0db1c24a42359c5b647044717fca243ffd244f",
+        "version" : "0.8.0"
+      }
+    },
+    {
+      "identity" : "xcbeautify",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/cpisciotta/xcbeautify",
+      "state" : {
+        "revision" : "d927949a340e60e1817fbd996cf57a6550aa4edf",
+        "version" : "2.1.0"
       }
     },
     {
@@ -96,6 +151,15 @@
       "state" : {
         "revision" : "313aaf1ad612135b7b0ccf731c86b5c07bf149b5",
         "version" : "8.20.0"
+      }
+    },
+    {
+      "identity" : "xmlcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MaxDesiatov/XMLCoder.git",
+      "state" : {
+        "revision" : "b1e944cbd0ef33787b13f639a5418d55b3bed501",
+        "version" : "0.17.1"
       }
     }
   ],
