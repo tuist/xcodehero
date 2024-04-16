@@ -28,7 +28,7 @@ let package = Package(
         .package(url: "https://github.com/PerfectlySoft/Perfect-INIParser.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/tuist/XcodeProj", .upToNextMajor(from: "8.20.0")),
         .package(url: "https://github.com/tuist/Command", .upToNextMajor(from: "0.1.0")),
-        .package(url: "https://github.com/tuist/SwiftTerminal", .upToNextMajor(from: "0.9.0")),
+        .package(url: "https://github.com/tuist/SwiftTerminal", .upToNextMajor(from: "0.10.0")),
         .package(url: "https://github.com/cpisciotta/xcbeautify", .upToNextMajor(from: "2.1.0"))
     ]
 )

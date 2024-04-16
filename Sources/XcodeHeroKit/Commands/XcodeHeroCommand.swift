@@ -2,12 +2,14 @@ import Foundation
 import ArgumentParser
 import SwiftTerminal
 
-struct XcodeHeroCommand: AsyncParsableCommand {
-    static let configuration = CommandConfiguration(
+public struct XcodeHeroCommand: AsyncParsableCommand {
+    public static let configuration = CommandConfiguration(
         commandName: "xcodehero",
         abstract: "xcodebuild with superpowers",
         subcommands: [BuildCommand.self]
     )
+    
+    public init() {}
     
     public static func main() async {
         do {
