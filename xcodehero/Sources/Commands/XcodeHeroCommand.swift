@@ -20,7 +20,10 @@ struct XcodeHeroCommand: AsyncParsableCommand {
         } catch {
             if let cleanExit = error as? CleanExit {
                 exit(withError: error)
-            } else if let fatalError = error as? FatalError {
+            } else if error.localizedDescription.contains("ArgumentParser") {
+                exit(withError: error)
+            }
+            else if let fatalError = error as? FatalError {
                 await CompletionMessage.render(message: .error(message: fatalError.description, context: fatalError.context, nextSteps: fatalError.nextSteps), theme: xcodeHeroTheme)
             } else {
                 await CompletionMessage.render(message: .error(message: error.localizedDescription, context: nil, nextSteps: []), theme: xcodeHeroTheme)

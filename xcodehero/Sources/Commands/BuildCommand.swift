@@ -65,19 +65,7 @@ struct BuildCommand: AsyncParsableCommand {
             preserveUnbeautifiedLines: false,
             additionalLines: { nil }
         )
-//        for try await event in commandRunner.run(arguments: arguments) {
-//            switch event {
-//            case .standardError(_):
-//                if let formattedLine = formatter.format(line: event.utf8String) {
-//                    try FileHandle.standardError.write(contentsOf: "\(formattedLine)\n".data(using: .utf8)!)
-//                }
-//            case .standardOutput(_):
-//                if let formattedLine = formatter.format(line: event.utf8String) {
-//                    try FileHandle.standardOutput.write(contentsOf: "\(formattedLine)\n".data(using: .utf8)!)
-//                }
-//            }
-//        }
-        
+
         let stream = commandRunner.run(arguments: arguments).map({ event -> CollapsibleStream.Event in
             switch event {
             case .standardError(_):
