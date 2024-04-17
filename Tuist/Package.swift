@@ -7,7 +7,7 @@ import PackageDescription
     let packageSettings = PackageSettings(
         // Customize the product types for specific package product
         // Default is .staticFramework
-        // productTypes: ["Alamofire": .framework,] 
+        // productTypes: ["Alamofire": .framework,]
         productTypes: [
             "TSCclibc": .staticLibrary,
             "TSCLibc": .staticLibrary,
@@ -15,7 +15,7 @@ import PackageDescription
             "Path": .staticLibrary,
             "XcodeProj": .staticLibrary,
             "Command": .staticLibrary,
-            "SwiftTerminal": .staticLibrary
+            "SwiftTerminal": .staticLibrary,
         ]
     )
 #endif
@@ -27,8 +27,9 @@ let package = Package(
         .package(url: "https://github.com/tuist/Path", .upToNextMajor(from: "0.2.0")),
         .package(url: "https://github.com/PerfectlySoft/Perfect-INIParser.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/tuist/XcodeProj", .upToNextMajor(from: "8.20.0")),
-        .package(url: "https://github.com/tuist/Command", .upToNextMajor(from: "0.1.0")),
-        .package(url: "https://github.com/tuist/SwiftTerminal", .upToNextMajor(from: "0.10.0")),
-        .package(url: "https://github.com/cpisciotta/xcbeautify", .upToNextMajor(from: "2.1.0"))
+        .package(url: "https://github.com/tuist/Command", .upToNextMajor(from: "0.2.0")),
+        .package(url: "https://github.com/tuist/SwiftTerminal", .upToNextMajor(from: "0.14.0")),
+        .package(url: "https://github.com/cpisciotta/xcbeautify", .upToNextMajor(from: "2.1.0")),
+        .package(url: "https://github.com/apple/swift-tools-support-core/", .upToNextMajor(from: "0.6.1")),
     ]
 )

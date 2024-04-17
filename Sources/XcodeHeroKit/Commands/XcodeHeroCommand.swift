@@ -1,5 +1,5 @@
-import Foundation
 import ArgumentParser
+import Foundation
 import SwiftTerminal
 
 public struct XcodeHeroCommand: AsyncParsableCommand {
@@ -8,10 +8,12 @@ public struct XcodeHeroCommand: AsyncParsableCommand {
         abstract: "xcodebuild with superpowers",
         subcommands: [BuildCommand.self]
     )
-    
+
     public init() {}
-    
+
     public static func main() async {
+        let context = XcodeHeroContext()
+
         do {
             var command = try parseAsRoot()
             if var asyncCommand = command as? AsyncParsableCommand {
@@ -20,15 +22,26 @@ public struct XcodeHeroCommand: AsyncParsableCommand {
                 try command.run()
             }
         } catch {
-            if let cleanExit = error as? CleanExit {
+            if let _ = error as? CleanExit {
                 exit(withError: error)
             } else if error.localizedDescription.contains("ArgumentParser") {
                 exit(withError: error)
-            }
-            else if let fatalError = error as? FatalError {
-                await CompletionMessage.render(message: .error(message: fatalError.description, context: fatalError.context, nextSteps: fatalError.nextSteps), theme: xcodeHeroTheme)
+            } else if let fatalError = error as? FatalError {
+                await CompletionMessage.render(
+                    message: .error(
+                        message: fatalError.description,
+                        context: fatalError.context,
+                        nextSteps: fatalError.nextSteps
+                    ),
+                    theme: xcodeHeroTheme,
+                    environment: .init(isInteractive: context.isInteractive, shouldColor: context.shouldColor)
+                )
             } else {
-                await CompletionMessage.render(message: .error(message: error.localizedDescription, context: nil, nextSteps: []), theme: xcodeHeroTheme)
+                await CompletionMessage.render(
+                    message: .error(message: error.localizedDescription, context: nil, nextSteps: []),
+                    theme: xcodeHeroTheme,
+                    environment: .init(isInteractive: context.isInteractive, shouldColor: context.shouldColor)
+                )
             }
             _exit(exitCode(for: error).rawValue)
         }

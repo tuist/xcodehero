@@ -17,7 +17,7 @@ let project = Project(
                 .external(name: "SwiftTerminal"),
                 .external(name: "XcodeProj"),
                 .external(name: "Command"),
-                .external(name: "XcbeautifyLib")
+                .external(name: "XcbeautifyLib"),
             ]
         ),
         .target(
@@ -28,7 +28,8 @@ let project = Project(
             deploymentTargets: .macOS("14.0.0"),
             sources: ["Tests/XcodeHeroKitAcceptanceTests/**"],
             dependencies: [
-                .target(name: "XcodeHeroKit")
+                .target(name: "XcodeHeroKit"),
+                .external(name: "TSCBasic"),
             ]
         ),
         .target(
@@ -39,8 +40,8 @@ let project = Project(
             deploymentTargets: .macOS("14.0.0"),
             sources: ["Sources/xcodehero/**"],
             dependencies: [
-                .target(name: "XcodeHeroKit")
+                .target(name: "XcodeHeroKit"),
             ]
-        )
+        ),
     ]
 )

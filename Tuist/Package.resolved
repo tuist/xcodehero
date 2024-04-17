@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/Command",
       "state" : {
-        "revision" : "7685bf67d8688e31fc1c93715a41a7558b1001b9",
-        "version" : "0.1.0"
+        "revision" : "fc3b61c9fd1341f7856d0e8d4fa59fa0b209e20f",
+        "version" : "0.2.0"
       }
     },
     {
@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/SwiftTerminal",
       "state" : {
-        "revision" : "0bd2eff6306754c7d17739a761b38089688b1815",
-        "version" : "0.10.0"
+        "revision" : "04824e6a6de9d76cc003a1b4305bf06bc70ec333",
+        "version" : "0.14.0"
       }
     },
     {
