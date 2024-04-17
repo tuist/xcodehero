@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tuist/SwiftTerminal",
       "state" : {
-        "revision" : "04824e6a6de9d76cc003a1b4305bf06bc70ec333",
-        "version" : "0.14.0"
+        "revision" : "2fe93a0446a02caff22d32e9062dc33038c26b27",
+        "version" : "0.15.0"
       }
     },
     {
