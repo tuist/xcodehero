@@ -64,12 +64,12 @@ actor XcodeHeroContext: Context {
     }
 
     static func defaultIsInteractive() -> Bool {
-        ProcessInfo.processInfo.environment["XCODEHERO_NO_TTY"] != nil || ProcessInfo.processInfo.arguments.contains("--no-tty")
+        !(ProcessInfo.processInfo.environment["XCODEHERO_NO_TTY"] != nil || ProcessInfo.processInfo.arguments.contains("--no-tty"))
     }
 
     static func defaultShouldColor() -> Bool {
-        ProcessInfo.processInfo.environment["XCODEHERO_NO_COLOR"] != nil || ProcessInfo.processInfo.arguments
-            .contains("--no-color")
+        !(ProcessInfo.processInfo.environment["XCODEHERO_NO_COLOR"] != nil || ProcessInfo.processInfo.arguments
+            .contains("--no-color"))
     }
 
     static func defaultEnvVariables() -> [String: String] {
